@@ -1,0 +1,79 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {},
+		"securitySchemes": {
+			"Bearer": {
+				"type": "apiKey",
+				"name": "token",
+				"in": "header",
+				"scopes": {
+					"root": "can do",
+					"admin": "can do",
+					"user": "can do"
+				}
+			}
+		}
+	},
+	"info": {
+		"title": "Node_Kernel",
+		"version": "1.0.0",
+		"description": "Node Js Kernel functionnal with Typescript and Sequelize",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "D Smart"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/index/supercontroller": {
+			"post": {
+				"operationId": "Sample",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/api"
+		}
+	]
+}
