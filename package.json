@@ -13,7 +13,9 @@
     "fabric:push": "prisma db push",
     "start": "nodemon --watch \"./**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node index.ts\"\n",
     "tsoa": "tsoa spec-and-routes -c ./tsoa.json",
-    "tsoa:watch": "nodemon --watch ./src/**/*.controller.ts --watch ./tsoa.json -e ts,json --exec npm run tsoa"
+    "tsoa:watch": "nodemon --watch ./src/**/*.controller.ts --watch ./tsoa.json -e ts,json --exec npm run tsoa",
+    "docker:build" :  "docker build --tag node-docker .",
+    "docker:start" : "docker run -it node-docker"
   },
   "keywords": [
     "Framework NodeJS",

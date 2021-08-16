@@ -5,7 +5,34 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"IResponse": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "This is the code of response you consult the code list for known what this code meaning"
+					},
+					"data": {
+						"description": "This is the data (Optionnal)"
+					},
+					"message": {
+						"type": "string",
+						"description": "This is the message of the request (Optionnal)"
+					},
+					"token": {
+						"type": "string",
+						"description": "This is the token givin on login (Optionnal)"
+					}
+				},
+				"required": [
+					"code",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {
 			"Bearer": {
 				"type": "apiKey",
@@ -40,7 +67,9 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/IResponse"
+								}
 							}
 						}
 					}

@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 
 # Create app directory
 WORKDIR /app
@@ -25,9 +25,11 @@ COPY assets ./assets
 COPY app ./app
 
 RUN npm install
+
 # If you are building your code for production
 # RUN npm ci --only=production
-RUN npm install typescript ts-node prisma nodemon -g
+
+RUN npm install typescript ts-node prisma nodemon readline-sync -g
 
 RUN prisma generate
 
