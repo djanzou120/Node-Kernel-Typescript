@@ -2,7 +2,7 @@
   "entryFile": "./index.ts",
   "noImplicitAdditionalProperties": "silently-remove-extras",
   "controllerPathGlobs": [
-    "./app/http/controllers/*.controller.ts"
+    "./app/http/**/*.controller.ts"
   ],
   "spec": {
     "basePath": "api",
@@ -12,7 +12,7 @@
     "securityDefinitions": {
       "Bearer": {
         "type": "apiKey",
-        "name": "token",
+        "name": "authorization",
         "in": "header",
         "scopes" : {
           "root" : "can do",
@@ -24,6 +24,7 @@
   },
   "routes": {
     "basePath": "",
-    "routesDir": "./routes"
+    "routesDir": "./routes",
+    "authenticationModule": "./app/http/middlewares/auth.ts"
   }
 }

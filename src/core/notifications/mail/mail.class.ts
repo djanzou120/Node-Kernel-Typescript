@@ -1,4 +1,3 @@
-import config from "../../../config/config";
 import {mailer} from "../../../config/mailer";
 import {MailFormat} from "./mail.types";
 import file from "./../../file/file.manager"
@@ -7,7 +6,7 @@ import path from "path";
 
 class Mailer {
 
-    modelPath:string = path.join(__dirname, config.MAIL_TEMPLATE_FOLDER || "./../../../../public/templates/mail/");
+    modelPath:string = path.join(__dirname, process.env.MAIL_TEMPLATE_FOLDER || "./../../../../public/templates/mail/");
 
     /**
      *
@@ -20,7 +19,7 @@ class Mailer {
     async send(to: string, subject: string, message: string, language: string): Promise<void> {
         try{
             let options:MailFormat = {
-                from: '"'+config.MAILER_FROM_NAME+'" <'+config.MAILER_FROM_EMAIL+'>',
+                from: '"'+process.env.MAILER_FROM_NAME+'" <'+process.env.MAILER_FROM_EMAIL+'>',
                 to: to,
                 subject: subject,
                 html: message
@@ -46,14 +45,17 @@ class Mailer {
      * @params path String the modele file path (disturbing because if fs )
      */
 
-    async sendFromTemplate(to: string, subject: string, language: string, modelName: string, data?: object): Promise<void> {
+    async sendFromTemplate(to: string | string[], subject: string, language: string, modelName: string, data?: object): Promise<void> {
         try{
             let message = await this.normalizeModel(modelName, language, data);
-            await this.send(to, subject, message, language);
+            if (Array.isArray(to)){
+                for (const item of to)
+                    await this.send(item, subject, message, language);
+            }else
+                await this.send(to, subject, message, language);
         } catch(error){
             console.log(error);
         }
-
     }
 
     /**

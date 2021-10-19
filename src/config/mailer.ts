@@ -1,21 +1,22 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPPool from 'nodemailer/lib/smtp-pool';
+import * as dotenv from 'dotenv';
 
-import config from './config';
+dotenv.config();
 
 const createMailTransport = (configOptions: SMTPPool.Options): Mail => {
 
-
+    const MAILER_PORT : number = <number> parseInt( <string> process.env.MAILER_PORT);
 
     const options: SMTPPool.Options = {
-        port: config.MAILER_PORT,
-        host: config.MAILER_HOST,
-        secure: config.NODE_ENV !== "development", // use TLS
+        port: MAILER_PORT,
+        host: process.env.MAILER_HOST,
+        secure: false,//process.env.NODE_ENV !== "development", // use TLS
 
         auth: {
-            pass: config.MAILER_PASSWORD,
-            user: config.MAILER_USER,
+            pass: process.env.MAILER_PASSWORD,
+            user: process.env.MAILER_USER,
         },
         ...configOptions,
     };
@@ -23,4 +24,4 @@ const createMailTransport = (configOptions: SMTPPool.Options): Mail => {
     return nodemailer.createTransport(options);
 };
 
-export const mailer = createMailTransport({ pool: true })
+export const mailer = createMailTransport({ pool: true });

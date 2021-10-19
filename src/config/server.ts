@@ -9,15 +9,18 @@ declare var global: any;
 export default async () => {
 
     //TODO optimize this method
-    if (process.env.NODE_ENV != 'development'){
-        await checkDependency();
-    }
+    // if (process.env.NODE_ENV != 'development'){
+    //     // await checkDependency();
+    // }
 
-    const availablePort : number = await portfinder.getPortPromise({
-        port : <number> parseInt(process.env.APP_PORT ?? "3000"),
-        startPort : 3000,
-        stopPort : 5999
-    });
+    let availablePort : number = <number> parseInt(<string> process.env.PORT);
+    if (process.env.NODE_ENV == "development"){
+        availablePort = await portfinder.getPortPromise({
+            port : <number> parseInt(<string>process.env.PORT ?? (<string>process.env.APP_PORT || "3000")),
+            startPort : 3000,
+            stopPort : 10000
+        });
+    }
 
     app.set('port', availablePort);
 

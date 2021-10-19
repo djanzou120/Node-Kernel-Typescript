@@ -8,6 +8,7 @@ import {ValidateError} from 'tsoa';
 import * as dotenv from 'dotenv';
 
 import {MY_Controller} from '../core/generic/MY_Controller';
+import logger from "./logger";
 
 //Middleware Error
 import {Middleware_Error} from '../core/generic/Middleware_Error';
@@ -19,6 +20,15 @@ import {allRoutes} from '../../routes';
 import Builder from '../core/adapter/response.builder';
 declare var global: any;
 global.responseCode = Builder.getCode();
+
+global.logger = logger;
+
+//Catch Error Handler
+const catchHandler = (e : any) => {
+    global.logger("error", e.message);
+    return (new MY_Controller()).liteResponse(global.responseCode.EXCEPTION, null, e.message);
+}
+global.catchHandler = catchHandler;
 
 dotenv.config();
 
