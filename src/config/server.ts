@@ -2,7 +2,6 @@ import http from 'http';
 import portfinder from 'portfinder';
 
 import app from './app';
-import checkDependency from './checkDep';
 
 declare var global: any;
 
@@ -18,7 +17,7 @@ export default async () => {
         availablePort = await portfinder.getPortPromise({
             port : <number> parseInt(<string>process.env.PORT ?? (<string>process.env.APP_PORT || "3000")),
             startPort : 3000,
-            stopPort : 10000
+            stopPort : 1000000
         });
     }
 

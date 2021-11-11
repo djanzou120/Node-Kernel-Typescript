@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, {Express, Request, Response} from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -18,6 +18,11 @@ import {allRoutes} from '../../routes';
 
 //Response builder
 import Builder from '../core/adapter/response.builder';
+//Set paginator
+import paginator from './paginator';
+//set Axios
+import sendExt from './axios';
+
 declare var global: any;
 global.responseCode = Builder.getCode();
 
@@ -43,12 +48,8 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
-//Set paginator
-import paginator from './paginator';
 app.use(paginator);
 
-//set Axios
-import sendExt from './axios';
 app.use(sendExt);
 
 // server static files

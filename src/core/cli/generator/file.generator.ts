@@ -15,6 +15,7 @@ type generateFileType = 'models'|'controllers'|'middlewares'|'module';
 import readline from "readline-sync";
 import file from "./../../file/file.manager";
 import path from "path";
+
 /**
  *
  * Generator
@@ -66,7 +67,8 @@ export default class FileGenerator {
 						await file.writeFile(path.join(__dirname, FileGenerator.basePath+"database/"+fileType+"s/"+fileName+"Seeder.ts"), fileContent);
 						break;
 					case "model":
-						await file.writeFile(path.join(__dirname, FileGenerator.modulesPath+fileType+"/"+fileName+".ts"), fileContent);
+						console.log(FileGenerator.modulesPath)
+						await file.writeFile(path.join(__dirname, FileGenerator.modulesPath+fileType+"s/"+fileName+".ts"), fileContent);
 						break;
 					case "controller":
 						await file.writeFile(path.join(__dirname, FileGenerator.modulesPath+"http/controllers/"+fileName+".controller.ts"), fileContent);

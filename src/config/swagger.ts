@@ -2,6 +2,7 @@
 // @ts-ignore
 import swaggerSchema from '../../routes/swagger.json';
 import express, {Router} from 'express';
+
 const router:Router = express.Router();
 
 const swaggerDoc = (req:any, res:any, next: () => any) => {

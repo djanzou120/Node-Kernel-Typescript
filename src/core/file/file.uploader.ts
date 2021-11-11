@@ -2,9 +2,9 @@ import multer from 'multer'
 import multerS3 from 'multer-s3';
 import mime from 'mime-types';
 import file from "./file.manager";
-import {Request, Response} from 'express';
+import {Request} from 'express';
 
-import {S3, AWS_S3_CONFIG} from "../../config/aws";
+import {AWS_S3_CONFIG} from "../../config/aws";
 
 class FileUploader {
 

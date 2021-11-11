@@ -1,6 +1,7 @@
 import readline from "readline-sync";
 import file from "./../../file/file.manager";
 import path from "path";
+
 /**
 *
 * Generator 

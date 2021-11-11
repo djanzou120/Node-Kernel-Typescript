@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = env("DB_DIALECT")
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 

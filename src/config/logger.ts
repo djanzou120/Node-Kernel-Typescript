@@ -1,9 +1,8 @@
 import {Logger} from 'tslog';
-import config from './config';
 
 export default (type: 'silly'|'trace'|'debug'|'info'|'warn'|'error'|'fatal' , message:string) => {
     try{
-        const log: Logger = new Logger({name:config.CONFIG_NAME, type: "json"});
+        const log: Logger = new Logger({name:process.env.CONFIG_NAME, type: "json"});
 
         switch (type){
             case 'silly':

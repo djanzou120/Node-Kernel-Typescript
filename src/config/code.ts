@@ -27,6 +27,7 @@ let value: any = {
         WRONG_CREDENTIALS: -1103,
         ACCOUNT_VERIFIED: 1104,
         NOT_EXISTS: -1105,
+        BLOCKED_ACCOUNT: -1106
     }
 };
 

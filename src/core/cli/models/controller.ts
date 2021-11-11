@@ -1,5 +1,4 @@
-import {Request, Response} from 'express';
-import {Body, Post, Route} from "tsoa";
+import {Route} from "tsoa";
 
 import Controller, {IResponse} from './controller';
 

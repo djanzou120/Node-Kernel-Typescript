@@ -2,7 +2,7 @@
   "entryFile": "./index.ts",
   "noImplicitAdditionalProperties": "silently-remove-extras",
   "controllerPathGlobs": [
-    "./app/http/**/*.controller.ts"
+    "./app/http/controllers/*.controller.ts"
   ],
   "spec": {
     "basePath": "api",

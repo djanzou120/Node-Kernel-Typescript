@@ -1,5 +1,6 @@
 import fs from "fs";
 import util from "util";
+
 const promisify : Function = util.promisify;
 
 export default class FileManager {
