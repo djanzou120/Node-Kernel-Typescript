@@ -27,7 +27,7 @@ export default (type: 'silly'|'trace'|'debug'|'info'|'warn'|'error'|'fatal' , me
                 log.fatal(new Error(message));
                 break;
         }
-    }catch (e) {
-        console.error(e.getMessage());
+    }catch (e : any) {
+        console.error(e.message);
     }
 }

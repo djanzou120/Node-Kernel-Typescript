@@ -20,12 +20,7 @@ const sendExt : any = async (
             method: method,
             url: url,
             data: {...params},
-            headers: headers,
-            transformResponse: [function (res) {
-                if (!res)
-                    return Ctrl.liteResponse(global.responseCode.FAILURE, null);
-                return Ctrl.liteResponse(global.responseCode.SUCCESS, JSON.parse(res));
-            }]
+            headers: headers
         })
         return response;
     }catch (e) {
@@ -33,7 +28,4 @@ const sendExt : any = async (
     }
 }
 
-export default async (req: Request, res: Response, next: () => any) : Promise<any> => {
-    global.sendExt = await sendExt();
-    next();
-}
+export default sendExt;

@@ -50,8 +50,6 @@ app.use(cors());
 
 app.use(paginator);
 
-app.use(sendExt);
-
 // server static files
 app.use('/static', express.static(path.resolve('static')));
 

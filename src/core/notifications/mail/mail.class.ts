@@ -72,7 +72,7 @@ class Mailer {
                 content = content.toString().replace(regExp, data[key]);
             }
             return content;
-        } catch (e) {
+        } catch (e : any) {
             return e;
         }
 

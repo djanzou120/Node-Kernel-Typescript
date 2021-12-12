@@ -16,8 +16,6 @@ export default async () => {
     if (process.env.NODE_ENV == "development"){
         availablePort = await portfinder.getPortPromise({
             port : <number> parseInt(<string>process.env.PORT ?? (<string>process.env.APP_PORT || "3000")),
-            startPort : 3000,
-            stopPort : 1000000
         });
     }
 

@@ -67,7 +67,6 @@ export default class FileGenerator {
 						await file.writeFile(path.join(__dirname, FileGenerator.basePath+"database/"+fileType+"s/"+fileName+"Seeder.ts"), fileContent);
 						break;
 					case "model":
-						console.log(FileGenerator.modulesPath)
 						await file.writeFile(path.join(__dirname, FileGenerator.modulesPath+fileType+"s/"+fileName+".ts"), fileContent);
 						break;
 					case "controller":
