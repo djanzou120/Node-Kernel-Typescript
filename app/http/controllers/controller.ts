@@ -1,5 +1,6 @@
 import {MY_Controller} from '../../../src/core/generic/MY_Controller';
 import Mailer from '../../../src/core/notifications/mail/mail.class';
+import {ValidateError} from 'tsoa';
 
 export interface IResponse {
     /**
@@ -44,6 +45,20 @@ class Controller extends MY_Controller {
         data ?: object
     }) : Promise<void> {
         return await Mailer.sendFromTemplate(config.to, config.subject, "", config.modelName, config.data);
+    }
+
+    public validate (schema : any, fields : any)
+    {
+        const validation = schema.validate(fields, {abortEarly : false});
+
+        let errors : any = {};
+        if (validation.error){
+            for (const field of validation.error.details){
+                errors[field.context.key] = field.message
+            }
+            throw new ValidateError(errors, "Validation error")
+        }
+        return;
     }
 }
 
