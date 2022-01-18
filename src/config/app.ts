@@ -64,16 +64,6 @@ allRoutes(routing);
 
 app.use(process.env.ROUTE_PREFIX || '/api', routing)
 
-//Catch request in case of not found url
-app.use((req, res) => {
-    let ctrl = new MY_Controller();
-    res.send(ctrl.liteResponse(global.responseCode.NOT_FOUND, {
-        AppName: process.env.APP_NAME,
-        AppUrl: process.env.APP_DOMAIN + ':' + global.appPort,
-        path: req.originalUrl,
-    }))
-})
-
 function error(err:any, req:Request, res:Response, next: any) {
     // respond with 500 "Internal Server Error".
     if (res.headersSent) {
