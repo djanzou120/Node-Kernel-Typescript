@@ -43,7 +43,7 @@ const app: Express = express();
 app.use(morgan('dev'));
 
 //Security Filter
-app.use(helmet());
+// app.use(helmet());
 
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());

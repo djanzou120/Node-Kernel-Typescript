@@ -1,7 +1,7 @@
 import http from 'http';
 import portfinder from 'portfinder';
-import {ApolloServer} from "apollo-server-express";
-import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core'
+import {ApolloServer, ServerRegistration} from "apollo-server-express";
+import {ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled} from 'apollo-server-core'
 
 import app from './app';
 import {MY_Controller} from '../core/generic/MY_Controller';
@@ -31,7 +31,7 @@ export default async () => {
     const apolloServer = new ApolloServer({
         schema,
         plugins : [
-            ApolloServerPluginLandingPageGraphQLPlayground()
+            ApolloServerPluginLandingPageGraphQLPlayground({})
         ]
     });
 
