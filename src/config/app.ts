@@ -18,10 +18,6 @@ import {allRoutes} from '../../routes';
 
 //Response builder
 import Builder from '../core/adapter/response.builder';
-//Set paginator
-import paginator from './paginator';
-//set Axios
-import sendExt from './axios';
 
 declare var global: any;
 global.responseCode = Builder.getCode();
@@ -47,8 +43,6 @@ app.use(morgan('dev'));
 
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
-
-app.use(paginator);
 
 // server static files
 app.use('/static', express.static(path.resolve('static')));

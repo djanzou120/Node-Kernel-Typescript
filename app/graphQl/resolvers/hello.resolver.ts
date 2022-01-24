@@ -1,8 +1,8 @@
 const helloResolver = {
     Query : {
-        hello (_: void, args: void) : string {
-            return `👋 Hello world! 👋`;
-        },
+        hello (_ : void, args : {id : number}) : string {
+            return `👋 Hello world! 👋 : ${args.id}`;
+        }
     }
 }
 

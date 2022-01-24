@@ -1,7 +1,7 @@
 import http from 'http';
 import portfinder from 'portfinder';
-import {ApolloServer, ServerRegistration} from "apollo-server-express";
-import {ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled} from 'apollo-server-core'
+import {ApolloServer} from "apollo-server-express";
+import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core'
 
 import app from './app';
 import {MY_Controller} from '../core/generic/MY_Controller';
@@ -10,12 +10,6 @@ import schema from "../../app/graphQl/schema";
 declare var global: any;
 
 export default async () => {
-
-    //TODO optimize this method
-    // if (process.env.NODE_ENV != 'development'){
-    //     // await checkDependency();
-    // }
-
     let availablePort : number = <number> parseInt(<string> process.env.PORT);
     if (process.env.NODE_ENV == "development"){
         availablePort = await portfinder.getPortPromise({
@@ -31,7 +25,7 @@ export default async () => {
     const apolloServer = new ApolloServer({
         schema,
         plugins : [
-            ApolloServerPluginLandingPageGraphQLPlayground({})
+            ApolloServerPluginLandingPageGraphQLPlayground()
         ]
     });
 
