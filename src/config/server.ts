@@ -1,7 +1,7 @@
 import http from 'http';
 import portfinder from 'portfinder';
 import {ApolloServer} from "apollo-server-express";
-import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core'
+import {ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
 
 import app from './app';
 import {MY_Controller} from '../core/generic/MY_Controller';
@@ -21,19 +21,24 @@ export default async () => {
 
     global.appPort = availablePort;
 
+    //Create HTTP Server
+    const server = http.createServer(app);
+
     //Apollo Server Initiation
     const apolloServer = new ApolloServer({
         schema,
         plugins : [
+            ApolloServerPluginDrainHttpServer({httpServer : server}),
             ApolloServerPluginLandingPageGraphQLPlayground()
-        ]
+        ],
+
     });
 
     await apolloServer.start();
 
     apolloServer.applyMiddleware({app})
 
-    const server = http.createServer(app);
+
 
     //Catch request in case of not found url
     app.use((req, res) => {

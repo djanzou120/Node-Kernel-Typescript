@@ -39,7 +39,9 @@ const app: Express = express();
 app.use(morgan('dev'));
 
 //Security Filter
-// app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false
+}));
 
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
