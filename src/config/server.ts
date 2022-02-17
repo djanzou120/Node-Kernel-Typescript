@@ -6,16 +6,10 @@ import app from './app';
 declare var global: any;
 
 export default async () => {
-
-    //TODO optimize this method
-    // if (process.env.NODE_ENV != 'development'){
-    //     // await checkDependency();
-    // }
-
     let availablePort : number = <number> parseInt(<string> process.env.PORT);
     if (process.env.NODE_ENV == "development"){
         availablePort = await portfinder.getPortPromise({
-            port : <number> parseInt(<string>process.env.PORT ?? (<string>process.env.APP_PORT || "3000")),
+            port : availablePort ?? 3000,
         });
     }
 
