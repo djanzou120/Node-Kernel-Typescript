@@ -7,11 +7,6 @@ declare var global: any;
 
 export default async () => {
     let availablePort : number = <number> parseInt(<string> process.env.PORT);
-    if (process.env.NODE_ENV == "development"){
-        availablePort = await portfinder.getPortPromise({
-            port : availablePort ?? 3000,
-        });
-    }
 
     app.set('port', availablePort);
 

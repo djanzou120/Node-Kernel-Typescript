@@ -79,7 +79,6 @@ function error(err:any, req:Request, res:Response, next: any) {
         message: err.message,
         details: err.details,
     };
-    // res.locals.stack = req.app.get('env') === 'development' ? err.stack : undefined;
 
     if ('fields' in err) {
         const details: Record<string, any> = {};
